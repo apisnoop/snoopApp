@@ -24,11 +24,13 @@
    confFilters,
    confFilteredEndpoints
  } from '../../../store/conformance.js';
+ import{ releasesURL } from '../../../lib/constants.js';
+
  import ConformanceEndpointsTable from '../../../components/conformance-endpoints-table.svelte';
  import ConformanceEndpointsFilters from '../../../components/conformance-endpoints-filter.svelte';
 
  export let payload;
- const endpointsURL = 'https://raw.githubusercontent.com/apisnoop/snoopDB/master/resources/coverage/conformance-endpoints.json'
+ const endpointsURL = `${releasesURL}/conformance-endpoints.json`;
 
  let { release, queryFilters } = payload;
 

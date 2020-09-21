@@ -4,8 +4,9 @@
    ineligibleEndpoints
  } from '../../../store/conformance.js';
  import { onMount } from 'svelte';
+ import { releasesURL } from '../../../lib/constants.js';
 
- const endpointsURL = 'https://raw.githubusercontent.com/apisnoop/snoopDB/master/resources/coverage/ineligible_endpoints.json';
+ const endpointsURL = `${releasesURL}/ineligible_endpoints.json`;
  onMount(async() => {
    const endpoints = await fetch(endpointsURL).then(res => res.json())
    ineligibleEndpointsRaw.set(endpoints);

@@ -4,8 +4,9 @@
    confEndpoints
  } from '../../../store/conformance.js';
  import { onMount } from 'svelte';
+ import { releasesURL } from '../../../lib/constants.js';
 
- const endpointsURL = 'https://raw.githubusercontent.com/apisnoop/snoopDB/master/resources/coverage/conformance-endpoints.json'
+ const endpointsURL = `${releasesURL}/conformance-endpoints.json`;
  onMount(async() => {
    const endpoints = await fetch(endpointsURL).then(res => res.json())
    console.log({endpoints});
