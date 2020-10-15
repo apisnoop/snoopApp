@@ -8,7 +8,7 @@ It does this by consuming ~json~ files for each release that it grabs from [[htt
 When Kubernetes has a new release, the SnoopApp needs to be updated to display its test results.  Currently, this is done manually.  This should be done, **after** every Kubernetes release, and after our ~resources~ directory is appropriately updated.
 
 ** Updating apisnoop upon a new release.
-Doublecheck [[https://github.com/cncf/apisnoop/tree/master/resources/coverage][cncf/apisnoop/resources/coverage]] to ensure the latest working release is in there.  If not, ensure snoopdb is updated for the new release too.
+Doublecheck [[https://github.com/cncf/apisnoop/tree/master/resources/coverage][cncf/apisnoop/resources/coverage]] to ensure the latest working release is in there.  If not, [[https://github.com/cncf/apisnoop/blob/master/docs/updating_apisnoop_upon_a_new_release.org][ensure snoopdb is updated for the new release too]].
 Once the json is avaiable then:
 - In this repo, you want to go to the file ~src/lib/constants.js~
 - In this file, you will see a constant named ~RELEASES~.
