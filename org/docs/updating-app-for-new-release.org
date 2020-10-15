@@ -1,0 +1,50 @@
+#+TITLE: Updating the App for a New Release
+
+
+apisnoop.cncf.io displays the test results for the latest working release and several past releases going back to 1.15.  So if the current stable release is 1.19, then apisnoop shows logs for 1.20 and earlier.
+
+It displays the test results by consuming the available ~coverage.json~ files located in [[https://github.com/cncf/apisnoop/tree/master/resources/coverage][github.com/cncf/apisnoop's resources directory]].  This directory is continually updated by our ~snoopdb~ component.
+
+When Kubernetes has a new release, APISnoop needs to be updated to display its test results.  Currently, this is done manually.  This should be done, **after** every Kubernetes release, and after our ~resources~ directory is appropriately updated..
+
+** Updating apisnoop upon a new release.
+Doublecheck [[https://github.com/cncf/apisnoop/tree/master/resources/coverage][cncf/apisnoop/resources/coverage]] to ensure the latest working release has a json file.  If not, ensure snoopdb is updated for the new release too.
+Once the new release's coverage json is avaiable, then:
+- In this repo, you want to go to the file ~src/lib/constants.js~
+- In this file, you will see a constant named RELEASES.
+- Add the next working release to the top of this list.
+
+** Example
+Let's say Kubernetes releases 1.20.0.  This makes 1.20.0 the /latest version/, and so 1.21.0 would be the /working version/
+You visit [[https://github.com/cncf/apisnoop/tree/master/resources/coverage][cncf/apisnoop/resources/coverage]] and see a file called ~1.21.0.json~.  You now know that new test data is available to consume.
+
+With this confirmed, in this repo you go to ~src/lib/constants.js~ where you see this constant
+
+#+BEGIN_EXAMPLE javascript
+export const RELEASES = [
+  '1.20.0',
+  '1.19.0',
+  '1.18.0',
+  '1.17.0',
+  '1.16.0',
+  '1.15.0'
+];
+#+END_EXAMPLE
+
+We want to add '1.21.0' to the top.
+
+It should now look like
+
+#+BEGIN_EXAMPLE javascript
+export const RELEASES = [
+  '1.21.0',
+  '1.20.0',
+  '1.19.0',
+  '1.18.0',
+  '1.17.0',
+  '1.16.0',
+  '1.15.0'
+];
+#+END_EXAMPLE
+
+Push your changes, and the website will update automatically with the latest coverage.
