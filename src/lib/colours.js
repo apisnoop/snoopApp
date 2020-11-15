@@ -43,13 +43,13 @@ export const categoryColours = {
 };
 
 export function endpointColour (endpoint) {
-  let endpointColor = categoryColours[endpoint.category];
+  let endpointColour = categoryColours[endpoint.category] || 'rgba(53,105,35,1)';
   if (!endpoint.tested) {
     return GRAY;
   } else if (!endpoint.conf_tested) {
-    return fadeColour(endpointColor, 0.75);
+    return fadeColour(endpointColour, 0.75);
   } else {
-    return endpointColor;
+    return endpointColour;
   }
 };
 
